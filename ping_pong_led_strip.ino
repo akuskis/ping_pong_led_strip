@@ -1,3 +1,6 @@
+#include "Game.hpp"
+#include "Settings.hpp"
+
 #include <FastLED.h>
 
 namespace
@@ -15,7 +18,7 @@ CRGB leds[NUM_LEDS];
 void setup()
 {
     FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
-    FastLED.setMaxPowerInVoltsAndMilliamps(5, 150);
+    FastLED.setMaxPowerInVoltsAndMilliamps(5, 350);
     FastLED.clear();
     FastLED.show();
 
@@ -24,6 +27,16 @@ void setup()
     pinMode(PLAYER_A_PIN, INPUT);
     pinMode(PLAYER_B_PIN, INPUT);
 }
+
+void loop()
+{
+    Settings settings{PLAYER_A_PIN, PLAYER_B_PIN, LED_PIN, NUM_LEDS, ZONE_SIZE, leds};
+    Game game(settings);
+
+    game.run();
+}
+
+/*
 
 void draw_zone_a()
 {
@@ -37,8 +50,6 @@ void draw_zone_b()
         leds[i] = CRGB(0, 55, 55);
 }
 
-void loop()
-{
     int pos = 0;
     int direction = 1;
 
@@ -67,8 +78,7 @@ void loop()
         FastLED.show();
         delay(20);
     }
-}
-
+*/
 
 /*
 
