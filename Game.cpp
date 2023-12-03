@@ -16,12 +16,8 @@ void Game::run()
     while (is_running_)
     {
         update_();
-
-        FastLED.clear();
         render_();
-        FastLED.show();
-
-        delay(50);
+        delay_();
     }
 }
 
@@ -32,5 +28,14 @@ void Game::update_()
 
 void Game::render_()
 {
+    FastLED.clear();
     state_.render();
+    FastLED.show();
+}
+
+void Game::delay_()
+{
+    // delay is incorrect solution here because this is not related to FPS
+    // so on different HW game will play differently (but this is a toy to play at home)
+    delay(state_.getDelay());
 }

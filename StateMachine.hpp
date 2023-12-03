@@ -12,6 +12,7 @@ public:
 
     void update();
     void render();
+    int getDelay();
 
 private:
     GameState* state_;

@@ -17,4 +17,5 @@ private:
 
     void update_();
     void render_();
+    void delay_();
 };

@@ -10,6 +10,7 @@ public:
 
     virtual void update() = 0;
     virtual void render() = 0;
+    virtual int getDelay() const;
 
     Settings const& settings() const;
     StateMachine& state();

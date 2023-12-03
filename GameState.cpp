@@ -6,6 +6,11 @@ GameState::GameState(Settings const& settings, StateMachine& state)
 {
 }
 
+int GameState::getDelay() const
+{
+    return 100;
+}
+
 Settings const& GameState::settings() const
 {
     return settings_;

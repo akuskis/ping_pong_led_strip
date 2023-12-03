@@ -37,3 +37,8 @@ void StateMachine::render()
     if (state_)
         state_->render();
 }
+
+int StateMachine::getDelay()
+{
+    return state_ ? state_->getDelay() : 100;
+}
