@@ -6,9 +6,9 @@
 #include <FastLED.h>
 
 Game::Game(Settings& settings)
-  : is_running_(true),
-    state_{new MenuState{settings}}
+  : is_running_(true)
 {
+    state_.replace(new MenuState{settings, state_});
 }
 
 void Game::run()

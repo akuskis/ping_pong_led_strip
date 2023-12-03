@@ -1,7 +1,9 @@
 #include "StateMachine.hpp"
 
-StateMachine::StateMachine(GameState* state)
-  : state_(state),
+#include "GameState.hpp"
+
+StateMachine::StateMachine()
+  : state_(nullptr),
     replacement_state_(nullptr)
 {
 }
@@ -19,7 +21,8 @@ void StateMachine::replace(GameState* state)
 
 void StateMachine::update()
 {
-    state_->update();
+    if (state_)
+        state_->update();
 
     if (replacement_state_)
     {
@@ -31,5 +34,6 @@ void StateMachine::update()
 
 void StateMachine::render()
 {
-    state_->render();
+    if (state_)
+        state_->render();
 }

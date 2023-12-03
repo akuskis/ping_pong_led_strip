@@ -1,9 +1,11 @@
 #include "MenuState.hpp"
 
+#include "PlayState.hpp"
+
 #include <FastLED.h>
 
-MenuState::MenuState(Settings& settings)
-  : settings_(settings),
+MenuState::MenuState(Settings const& settings, StateMachine& state)
+  : GameState(settings, state),
     player_a_ready_(false),
     player_b_ready_(false)
 {
@@ -11,38 +13,37 @@ MenuState::MenuState(Settings& settings)
 
 void MenuState::update()
 {
-    int button_a = digitalRead(settings_.BUTTON_A);
-    if (button_a == HIGH)
+    if (digitalRead(settings().BUTTON_A) == HIGH)
         player_a_ready_ = true;
 
-    int button_b = digitalRead(settings_.BUTTON_B);
-    if (button_b == HIGH)
+    if (digitalRead(settings().BUTTON_B) == HIGH)
         player_b_ready_ = true;
 
-    // if both are ready - change state
+    if (player_a_ready_ && player_b_ready_)
+        state().replace(new PlayState(settings(), state()));
 }
 
 void MenuState::render()
 {
     if (player_a_ready_)
     {
-        for (int i = 0; i < settings_.ZONE_SIZE; ++i)
-            settings_.leds[i] = CRGB(0, 55, 55);
+        for (int i = 0; i < settings().ZONE_SIZE; ++i)
+            settings().leds[i] = CRGB(0, 55, 55);
     }
     else
     {
-        for (int i = 0; i < settings_.NUM_LEDS / 2; ++i)
-            settings_.leds[i] = CRGB(0, 55, 55);
+        for (int i = 0; i < settings().NUM_LEDS / 2; ++i)
+            settings().leds[i] = CRGB(0, 55, 55);
     }
 
     if (player_b_ready_)
     {
-        for (int i = settings_.NUM_LEDS - settings_.ZONE_SIZE; i < settings_.NUM_LEDS; ++i)
-            settings_.leds[i] = CRGB(0, 55, 55);
+        for (int i = settings().NUM_LEDS - settings().ZONE_SIZE; i < settings().NUM_LEDS; ++i)
+            settings().leds[i] = CRGB(0, 55, 55);
     }
     else
     {
-        for (int i = settings_.NUM_LEDS / 2; i < settings_.NUM_LEDS; ++i)
-            settings_.leds[i] = CRGB(0, 55, 55);
+        for (int i = settings().NUM_LEDS / 2; i < settings().NUM_LEDS; ++i)
+            settings().leds[i] = CRGB(0, 55, 55);
     }
 }

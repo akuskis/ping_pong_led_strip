@@ -1,11 +1,11 @@
 #pragma once
 
-#include "GameState.hpp"
+class GameState;
 
 class StateMachine
 {
 public:
-    StateMachine(GameState* state);
+    StateMachine();
     ~StateMachine();
 
     void replace(GameState* state);
