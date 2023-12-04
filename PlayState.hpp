@@ -19,6 +19,8 @@ private:
     int ball_direction_ = 0;
     int speed_ = 0;
 
+    bool button_a_ = false;
+    bool button_b_ = false;
     int score_ = 0;
 
     void startRound_();
@@ -26,4 +28,11 @@ private:
     void drawZoneB_();
     void drawScore_();
     void drawBall_();
+
+    void handleEvents_();
+    void onButtonA_();
+    void onButtonB_();
+
+    void scoreA_();
+    void scoreB_();
 };
