@@ -2,6 +2,8 @@
 
 #include "GameState.hpp"
 
+#include "FastLED.h"
+
 class WinnerState : public GameState
 {
 public:
@@ -18,5 +20,8 @@ public:
     int getDelay() const override;
 
 private:
-    Winner winner_;
+    int count_ = 0;
+
+    CRGB player_a_color_;
+    CRGB player_b_color_;
 };

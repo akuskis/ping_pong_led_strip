@@ -35,4 +35,6 @@ private:
 
     void scoreA_();
     void scoreB_();
+
+    void waitUntilButtonsReady_();
 };

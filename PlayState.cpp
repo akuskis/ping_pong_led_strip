@@ -77,6 +77,8 @@ void PlayState::startRound_()
         ball_position_ = 0;
         ball_direction_ = 1;
     }
+
+    waitUntilButtonsReady_();
 }
 
 void PlayState::drawZoneA_()
@@ -162,4 +164,13 @@ void PlayState::scoreB_()
 {
     ++score_;
     is_playing_ = false;
+}
+
+void PlayState::waitUntilButtonsReady_()
+{
+    while (digitalRead(settings().BUTTON_A) == HIGH || digitalRead(settings().BUTTON_B) == HIGH)
+        delay(50);
+
+    button_a_ = false;
+    button_b_ = false;
 }
