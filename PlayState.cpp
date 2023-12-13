@@ -62,6 +62,7 @@ int PlayState::getDelay() const
 
 void PlayState::startRound_()
 {
+    delay(1000); // delay between rounds
     ++round_number_;
 
     is_playing_ = true;
