@@ -7,7 +7,7 @@
 namespace
 {
 int const MAX_SPEED = 20;
-int const SCORE_TO_WIN = 4;
+int const SCORE_TO_WIN = 5;
 
 CRGB const ZONE_COLOR(0, 55, 55);
 CRGB const BALL_COLOR(255, 0, 0);
